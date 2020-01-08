@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SurfaceLeveling;
-using Degree;
-using SurfaceLeveling.Model;
+using GeometryLib;
+using SurfaceLeveling.Elementary;
 
 namespace AreaTest
 {
@@ -13,8 +13,6 @@ namespace AreaTest
     {
         static void Main(string[] args)
         {
-            
-
             // № зачетной книжки
             double K = 101;
 

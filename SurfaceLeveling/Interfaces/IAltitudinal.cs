@@ -9,11 +9,11 @@ namespace SurfaceLeveling.Interfaces
     /// <summary>
     /// Предоставляет высотную отметку
     /// </summary>
-    public interface IAltitudinal
+    public interface IHeight
     {
         /// <summary>
         /// Высотная отметка
         /// </summary>
-        double HeightMark { get; }
+        double CoordinateZ { get; }
     }
 }

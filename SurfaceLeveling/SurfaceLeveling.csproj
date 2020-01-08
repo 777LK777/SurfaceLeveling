@@ -44,20 +44,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Elementary\WorkingMark.cs" />
+    <Compile Include="PlaygroundCenterOfGravity.cs" />
+    <Compile Include="InputData.cs" />
     <Compile Include="Interfaces\IAltitudinal.cs" />
     <Compile Include="Interfaces\IPositionable.cs" />
     <Compile Include="Interfaces\IVertex.cs" />
-    <Compile Include="Model\AbsoluteMark.cs" />
-    <Compile Include="Model\ProjectMark.cs" />
-    <Compile Include="Model\Rapper.cs" />
-    <Compile Include="Model\Square.cs" />
-    <Compile Include="Model\Playground.cs" />
-    <Compile Include="Model\GeoRapper.cs" />
-    <Compile Include="Model\SquareVertex.cs" />
+    <Compile Include="Elementary\AbsoluteMark.cs" />
+    <Compile Include="Elementary\ProjectMark.cs" />
+    <Compile Include="Elementary\Rapper.cs" />
+    <Compile Include="Shapes\Square.cs" />
+    <Compile Include="Playground.cs" />
+    <Compile Include="Elementary\GeoRapper.cs" />
+    <Compile Include="Elementary\SquareVertex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

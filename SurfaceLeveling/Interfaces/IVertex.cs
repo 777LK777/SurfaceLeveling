@@ -9,5 +9,5 @@ namespace SurfaceLeveling.Interfaces
     /// <summary>
     /// Предоставляет данные о местоположении и высотной отметке
     /// </summary>
-    public interface IVertex : IAltitudinal, IPositionable { }
+    public interface IVertex : IHeight, IPositionable { }
 }

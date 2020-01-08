@@ -6,44 +6,60 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SurfaceLeveling.Model
+namespace SurfaceLeveling.Elementary
 {
-    public class SquareVertex : IEquatable<SquareVertex>, IVertex
+    internal class SquareVertex : IEquatable<SquareVertex>, IVertex
     {
-        /// <summary>
-        /// Абсолютная отметка вершины
-        /// </summary>
-        AbsoluteMark absoluteMark;
+        AbsoluteMark _absoluteMark;
+        ProjectMark _projectMark;
+        WorkingMark _workingMark;
+        IVertex _vertex;
+
+        public static IList<SquareVertex> VerticesFactory(IEnumerable<IVertex> vertices)
+        {
+            List<SquareVertex> _vertices = new List<SquareVertex>();
+
+            foreach (IVertex vertex in vertices.Distinct())
+            {
+                _vertices.Add(new SquareVertex(vertex));
+            }            
+
+            return _vertices;
+        }        
 
         /// <summary>
         /// Абсолютная отметка вершины
         /// </summary>
-        public double AbsoluteMark { get => absoluteMark.markVertex; }
+        public AbsoluteMark AbsoluteMark
+        {
+            get
+            {
+                return _absoluteMark;
+            }
+            set
+            {
+                _absoluteMark = value;
+            }
+        }
 
         /// <summary>
         /// Проектная отметка вершины
         /// </summary>
-        ProjectMark projectMark;
+        public ProjectMark ProjectMark
+        {
+            get { return _projectMark; }
+            internal set { _projectMark = value; }
+        }
+        
 
-        IVertex vertex;
-
-        // TODO: Можно определить свои классы исключений
+        // TODO: ТЕХДОЛГ Можно определить свои классы исключений
         /// <summary>
         /// Рабочая отметка вершины
         /// </summary>
-        public double WorkingMark
+        public WorkingMark WorkingMark
         {
-            get
-            {
-                try
-                {
-                    return projectMark.ProjectHeight - absoluteMark.markVertex;
-                }
-                catch
-                {
-                    throw new InvalidOperationException("Не определены абсолютная и проектная отметки");
-                }
-            }
+            get { return _workingMark; }
+            internal set { _workingMark = value; }
         }
 
         /// <summary>
@@ -63,7 +79,7 @@ namespace SurfaceLeveling.Model
         {
             get
             {
-                return vertex.CoordinateX;
+                return _vertex.CoordinateX;
             }
         }
 
@@ -74,14 +90,14 @@ namespace SurfaceLeveling.Model
         {
             get
             {
-                return vertex.CoordinateY;
+                return _vertex.CoordinateY;
             }
         }        
         
         /// <summary>
         /// Отсчет по рейке
         /// </summary>
-        public double HeightMark { get; }
+        public double CoordinateZ { get; }
 
         /// <summary>
         /// Вершина квадрата
@@ -90,29 +106,19 @@ namespace SurfaceLeveling.Model
         /// <param name="SerialNo">Порядковый номер. Правильный отсчет: слева - направо, сверху - вниз</param>
         public SquareVertex(IVertex Vertex)
         {
-            vertex = Vertex;            
+            _vertex = Vertex;            
 
-            if (vertex.CoordinateX == 0 && vertex.CoordinateY == 0) IsOrigin = true;
+            if (_vertex.CoordinateX == 0 && _vertex.CoordinateY == 0) IsOrigin = true;
             else IsOrigin = false;
         }        
 
         /// <summary>
         /// Использование вершины для инициализации квадрата
         /// </summary>
-        public SquareVertex Call()
+        internal SquareVertex Call()
         {
             CountCalls++;
             return this;
-        }
-
-        public void SetAbsoluteMark(Playground field)
-        {
-            absoluteMark = new AbsoluteMark(this, field.rapper);
-        }
-
-        public void SetProjectMark(Playground field)
-        {
-            projectMark = new ProjectMark(field.GeodesicGradient, field.directionalAngle, this, IsOrigin ? field : this);
         }
 
         #region IEquatable

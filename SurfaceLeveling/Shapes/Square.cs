@@ -1,4 +1,5 @@
-﻿using SurfaceLeveling.Interfaces;
+﻿using SurfaceLeveling.Elementary;
+using SurfaceLeveling.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,10 +7,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SurfaceLeveling.Model
+namespace SurfaceLeveling.Shapes
 {
     internal class Square : IEnumerable
     {
+        public static IList<Square> SquaresFactory(IEnumerable<SquareVertex> vertices)
+        {
+            //foreach (double Y in GridCoordsY)
+            //{
+            //    if ((Y + GridSpacing) > GridCoordsY.Max()) break;
+            //    else
+            //    {
+            //        List<double> Xs = _vertices.
+            //            Where(vs => vs.CoordinateY == Y).
+            //            Select(vs => vs.X).
+            //            OrderBy(X => X).
+            //            ToList();
+
+            //        foreach (double X in Xs)
+            //        {
+            //            if ((X + GridSpacing) > Xs.Max()) break;
+            //            else
+            //            {
+            //                Squares.Add(new Square(_vertices.
+            //                    Where(vs => (vs.Y >= Y) && (vs.Y <= (Y + GridSpacing))).
+            //                    Where(vs => (vs.X >= X) && (vs.X <= (X + GridSpacing))), _squares.Count + 1));
+            //            }
+            //        }
+            //    }
+            //}
+        }
+
+
         // !! Ни одна из сторон фигур (Figure) не должна быть больше диагонали квадрата сетки
         // 5. Из точек нужно собрать фигуру (Figure) (для начала можно массив точек ((далее квадрат треугольник и трапеция))
 
@@ -77,7 +106,7 @@ namespace SurfaceLeveling.Model
 
 
     #region IEnumerable
-    public class FigureEnum : IEnumerator
+    internal class FigureEnum : IEnumerator
     {
         public SquareVertex[] points;
         int position = -1;

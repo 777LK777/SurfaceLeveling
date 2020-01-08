@@ -1,10 +1,11 @@
 ﻿using SurfaceLeveling.Interfaces;
 
-namespace SurfaceLeveling
+namespace SurfaceLeveling.Elementary
 {
-    public class Rapper : IAltitudinal
-    {
+    //Используется для входных данных
 
+    public class Rapper
+    {
         /// <summary>
         /// Отсчёт по рейке, установленной на репере
         /// </summary>
@@ -15,5 +16,9 @@ namespace SurfaceLeveling
         /// </summary>
         public double HeightMark { get; set; }
 
+        internal GeoRapper ToGeoRapper()
+        {
+            return new GeoRapper();
+        }
     }
 }
