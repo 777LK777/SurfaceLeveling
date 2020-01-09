@@ -44,7 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Elementary\PointOfZeroWork.cs" />
     <Compile Include="Elementary\WorkingMark.cs" />
+    <Compile Include="Frame\Field.cs" />
+    <Compile Include="Frame\Row.cs" />
     <Compile Include="PlaygroundCenterOfGravity.cs" />
     <Compile Include="InputData.cs" />
     <Compile Include="Interfaces\IAltitudinal.cs" />

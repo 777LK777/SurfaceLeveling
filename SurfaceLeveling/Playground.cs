@@ -41,7 +41,10 @@ namespace SurfaceLeveling
         /// Список квадратов поля
         /// </summary>
         readonly List<Square> _squares;
-
+        /// <summary>
+        /// Список точек нулевых работ
+        /// </summary>
+        readonly List<PointOfZeroWork> _zeroWorks;
 
 
         #region ctor
@@ -61,6 +64,8 @@ namespace SurfaceLeveling
 
             ProjectMark.SetProjectMarks(this);
             WorkingMark.SetWorkingMarks(_vertices);
+
+            _zeroWorks = PointOfZeroWork.FactoryMethod(_vertices).ToList();
         }
         #endregion
 
@@ -108,10 +113,10 @@ namespace SurfaceLeveling
         /// </summary>
         public IAngle DirectionalAngle { get => _directionalAngle; }
 
+        /// <summary>
+        /// Вершины квадратов
+        /// </summary>
         internal List<SquareVertex> Vertices { get => _vertices; }
-        
-
-
 
         /// <summary>
         /// XY и высотное-положения центра тяжести площадки

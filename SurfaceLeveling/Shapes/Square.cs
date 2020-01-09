@@ -78,7 +78,7 @@ namespace SurfaceLeveling.Shapes
         public override string ToString()
         {
             string str = string.Empty;
-            foreach(SquareVertex pt in PointsForFigure.OrderBy(pt => pt.Y).OrderBy(pt => pt.X))
+            foreach(SquareVertex pt in PointsForFigure.OrderBy(pt => pt.CoordinateY).OrderBy(pt => pt.CoordinateX))
             {
                 str += pt.ToString() + "\n";
             }
@@ -94,9 +94,9 @@ namespace SurfaceLeveling.Shapes
 
         public CenterOfGravity(List<SquareVertex> pointsForFigure)
         {
-            coordX = pointsForFigure.Sum(pt => pt.X) / pointsForFigure.Count();
+            coordX = pointsForFigure.Sum(pt => pt.CoordinateX) / pointsForFigure.Count();
 
-            coordY = pointsForFigure.Sum(pt => pt.Y) / pointsForFigure.Count();
+            coordY = pointsForFigure.Sum(pt => pt.CoordinateY) / pointsForFigure.Count();
         }
 
         public double CoordinateX => coordX;
