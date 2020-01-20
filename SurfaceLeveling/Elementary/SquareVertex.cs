@@ -99,6 +99,8 @@ namespace SurfaceLeveling.Elementary
         /// </summary>
         public double CoordinateZ { get; }
 
+        public bool IsNode => _vertex.IsNode;
+
         /// <summary>
         /// Вершина квадрата
         /// </summary>

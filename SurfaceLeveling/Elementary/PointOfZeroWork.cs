@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SurfaceLeveling.Frame;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,23 @@ namespace SurfaceLeveling.Elementary
         /// <returns>Список точек нулевых работ</returns>
         internal static IList<PointOfZeroWork> FactoryMethod(IEnumerable<SquareVertex> vertices)
         {
-            throw new NotImplementedException();
+            List<PointOfZeroWork> points = new List<PointOfZeroWork>();
+            Field<SquareVertex> field = new Field<SquareVertex>(vertices);
+
+            // TODO: ТЕХДОЛГ Переписать на асинхрон!!!
+            // Строки по X и строки по Y должны обходиться одновременно
+
+            foreach(var row in field.XRows)
+            {
+                for(int i = 1; i< row.Length; i++)
+                {
+                    points.Add(new PointOfZeroWork(row[i - 1].WorkingMark, row[i].WorkingMark, field.Step));
+                }
+            }
+
+
+
+            return null;
         }
 
         readonly double _firstWorkMark;

@@ -35,7 +35,10 @@ namespace SurfaceLeveling.Shapes
             //            }
             //        }
             //    }
-            //}
+
+
+                return null;
+            
         }
 
 
@@ -86,6 +89,7 @@ namespace SurfaceLeveling.Shapes
             return str;
         }
     }
+}
 
     class CenterOfGravity : IPositionable
     {
@@ -102,7 +106,9 @@ namespace SurfaceLeveling.Shapes
         public double CoordinateX => coordX;
 
         public double CoordinateY => coordY;
-    }
+
+    public bool IsNode => throw new NotImplementedException();
+}
 
 
     #region IEnumerable
@@ -151,4 +157,4 @@ namespace SurfaceLeveling.Shapes
         }
     }
     #endregion
-}
+

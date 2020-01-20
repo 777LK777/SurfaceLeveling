@@ -11,7 +11,6 @@ namespace SurfaceLeveling.Interfaces
     /// </summary>
     public interface IPositionable
     {
-
         /// <summary>
         /// Координата X
         /// </summary>
@@ -21,6 +20,10 @@ namespace SurfaceLeveling.Interfaces
         /// Координата Y
         /// </summary>
         double CoordinateY { get; }
-
+        
+        /// <summary>
+        /// Показатель того, что точка - узел координатной сетки
+        /// </summary>
+        bool IsNode { get; }
     }
 }

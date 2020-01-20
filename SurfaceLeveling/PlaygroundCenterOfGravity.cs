@@ -17,101 +17,101 @@ namespace SurfaceLeveling
         #region ctor
         public PlaygroundCenterOfGravity(IEnumerable<Square> squares)
         {
-            double SummXi = 0;
-            foreach (double center in field._squares.
-                Select(figure => figure.CenterOfGravity.y).
-                OrderBy(y => y))
-            {
-                SummXi += field.Squares.
-                    Where(f => f.CenterOfGravity.y == center).
-                    Count() * center;
-            }
-
-            double SummYi = 0;
-            foreach (double center in field.Squares.
-                Select(f => f.CenterOfGravity.X).
-                OrderBy(x => x))
-            {
-                SummYi += field.Squares.
-                    Where(f => f.CenterOfGravity.X == center).
-                    Count() * center;
-            };
-
-            //
-            List<double> amount = new List<double>();   // Список сумм
-
-            // Вычисление сумм вершин:
-            foreach (int count in field._verticies.
-                Select(pt => pt.CountCalls).
-                Distinct().
-                OrderBy(count => count))
-            {
-                amount.Add(field._verticies.
-                    Where(pt => pt.CountCalls == count).
-                    Sum(pt => pt.AbsoluteMark));
-            }
-
-            double numerator = 0;   // числитель
-
-            for (int i = 1; i <= 4; i++)
-            {
-                numerator += i * amount[i - 1];
-            }
-
-            //
-
-            new PlaygroundCenterOfGravity(X: SummXi / field.Squares.Count, Y: SummYi / field.Squares.Count, numerator / (field.Squares.Count() * 4));
-
-
-            //get
+            //double SummXi = 0;
+            //foreach (double center in squares.
+            //    Select(figure => figure.CenterOfGravity.y).
+            //    OrderBy(y => y))
             //{
-            //    double SummXi = 0;
-            //    foreach (double center in _squares.
-            //        Select(figure => figure.CenterOfGravity.y).
-            //        OrderBy(y => y))
-            //    {
-            //        SummXi += _squares.
-            //            Where(f => f.CenterOfGravity.y == center).
-            //            Count() * center;
-            //    }
-
-            //    double SummYi = 0;
-            //    foreach (double center in _squares.
-            //        Select(f => f.CenterOfGravity.X).
-            //        OrderBy(x => x))
-            //    {
-            //        SummYi += _squares.
-            //            Where(f => f.CenterOfGravity.X == center).
-            //            Count() * center;
-            //    };
-
-            //    return new PointP((SummXi / Squares.Count), (SummYi / Squares.Count));
+            //    SummXi += field.Squares.
+            //        Where(f => f.CenterOfGravity.y == center).
+            //        Count() * center;
             //}
 
-            Console.WriteLine("Вычисляю высотную отметку центра тяжести");
-            // TODO: Нужна осуществить проверку значений (см. стр. 10)
-            List<double> amount = new List<double>();   // Список сумм
+            //double SummYi = 0;
+            //foreach (double center in field.Squares.
+            //    Select(f => f.CenterOfGravity.X).
+            //    OrderBy(x => x))
+            //{
+            //    SummYi += field.Squares.
+            //        Where(f => f.CenterOfGravity.X == center).
+            //        Count() * center;
+            //};
 
-            // Вычисление сумм вершин:
-            foreach (int count in _vertices.
-                Select(pt => pt.CountCalls).
-                Distinct().
-                OrderBy(count => count))
-            {
-                amount.Add(_vertices.
-                    Where(pt => pt.CountCalls == count).
-                    Sum(pt => pt.AbsoluteMark));
-            }
+            ////
+            //List<double> amount = new List<double>();   // Список сумм
 
-            double numerator = 0;   // числитель
+            //// Вычисление сумм вершин:
+            //foreach (int count in field._verticies.
+            //    Select(pt => pt.CountCalls).
+            //    Distinct().
+            //    OrderBy(count => count))
+            //{
+            //    amount.Add(field._verticies.
+            //        Where(pt => pt.CountCalls == count).
+            //        Sum(pt => pt.AbsoluteMark));
+            //}
 
-            for (int i = 1; i <= 4; i++)
-            {
-                numerator += i * amount[i - 1];
-            }
-            return numerator / (Squares.Count() * 4);   // 4 - константа
+            //double numerator = 0;   // числитель
 
-            Console.WriteLine("Высота центра тяжести равна: " + (numerator / (Squares.Count() * 4)));
+            //for (int i = 1; i <= 4; i++)
+            //{
+            //    numerator += i * amount[i - 1];
+            //}
+
+            ////
+
+            //new PlaygroundCenterOfGravity(X: SummXi / field.Squares.Count, Y: SummYi / field.Squares.Count, numerator / (field.Squares.Count() * 4));
+
+
+            ////get
+            ////{
+            ////    double SummXi = 0;
+            ////    foreach (double center in _squares.
+            ////        Select(figure => figure.CenterOfGravity.y).
+            ////        OrderBy(y => y))
+            ////    {
+            ////        SummXi += _squares.
+            ////            Where(f => f.CenterOfGravity.y == center).
+            ////            Count() * center;
+            ////    }
+
+            ////    double SummYi = 0;
+            ////    foreach (double center in _squares.
+            ////        Select(f => f.CenterOfGravity.X).
+            ////        OrderBy(x => x))
+            ////    {
+            ////        SummYi += _squares.
+            ////            Where(f => f.CenterOfGravity.X == center).
+            ////            Count() * center;
+            ////    };
+
+            ////    return new PointP((SummXi / Squares.Count), (SummYi / Squares.Count));
+            ////}
+
+            //Console.WriteLine("Вычисляю высотную отметку центра тяжести");
+            //// TODO: Нужна осуществить проверку значений (см. стр. 10)
+            //List<double> amount = new List<double>();   // Список сумм
+
+            //// Вычисление сумм вершин:
+            //foreach (int count in _vertices.
+            //    Select(pt => pt.CountCalls).
+            //    Distinct().
+            //    OrderBy(count => count))
+            //{
+            //    amount.Add(_vertices.
+            //        Where(pt => pt.CountCalls == count).
+            //        Sum(pt => pt.AbsoluteMark));
+            //}
+
+            //double numerator = 0;   // числитель
+
+            //for (int i = 1; i <= 4; i++)
+            //{
+            //    numerator += i * amount[i - 1];
+            //}
+            //return numerator / (Squares.Count() * 4);   // 4 - константа
+
+            //Console.WriteLine("Высота центра тяжести равна: " + (numerator / (Squares.Count() * 4)));
 
         }
         #endregion
@@ -128,5 +128,7 @@ namespace SurfaceLeveling
         /// Y-координата центра тяжести площадки
         /// </summary>
         public double CoordinateY { get => _projectYCoord; }
+
+        public bool IsNode => false;
     }
 }
