@@ -12,12 +12,12 @@ namespace SurfaceLeveling.Elementary
         {
             vertices.
                 ToList().
-                ForEach(vx => vx.WorkingMark = new WorkingMark(vx));
+                ForEach(vx => vx.SetWorkingMark());
         }
 
         readonly double _workingMark;
 
-        private WorkingMark(SquareVertex vertex)
+        internal WorkingMark(SquareVertex vertex)
         {
             _workingMark = vertex.ProjectMark.ProjectHeight - vertex.AbsoluteMark.AbsoluteMarkVertex;
         }

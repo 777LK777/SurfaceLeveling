@@ -65,7 +65,7 @@ namespace SurfaceLeveling
             ProjectMark.SetProjectMarks(this);
             WorkingMark.SetWorkingMarks(_vertices);
 
-            _zeroWorks = PointOfZeroWork.FactoryMethod(_vertices).ToList();
+            _zeroWorks = PointOfZeroWork.FactoryMethod(new Frame.Field<SquareVertex>(_vertices)).ToList();
         }
         #endregion
 

@@ -1,4 +1,5 @@
 ﻿using SurfaceLeveling.Frame;
+using SurfaceLeveling.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,17 +8,16 @@ using System.Threading.Tasks;
 
 namespace SurfaceLeveling.Elementary
 {
-    internal class PointOfZeroWork
+    internal class PointOfZeroWork : IPositionable
     {        
         /// <summary>
         /// Возвращает список точек нулевых работ
         /// </summary>
         /// <param name="vertices">Список вершин квадратов поля</param>
         /// <returns>Список точек нулевых работ</returns>
-        internal static IList<PointOfZeroWork> FactoryMethod(IEnumerable<SquareVertex> vertices)
+        internal static IList<PointOfZeroWork> FactoryMethod(Field<SquareVertex> field)
         {
             List<PointOfZeroWork> points = new List<PointOfZeroWork>();
-            Field<SquareVertex> field = new Field<SquareVertex>(vertices);
 
             // TODO: ТЕХДОЛГ Переписать на асинхрон!!!
             // Строки по X и строки по Y должны обходиться одновременно
@@ -26,13 +26,19 @@ namespace SurfaceLeveling.Elementary
             {
                 for(int i = 1; i< row.Length; i++)
                 {
-                    points.Add(new PointOfZeroWork(row[i - 1].WorkingMark, row[i].WorkingMark, field.Step));
+                    points.Add(new PointOfZeroWork(row[i - 1], row[i], field.Step));
                 }
             }
 
+            foreach(var row in field.YRows)
+            {
+                for(int i = 1; i< row.Length; i++)
+                {
+                    points.Add(new PointOfZeroWork(row[i - 1], row[i], field.Step));
+                }
+            }
 
-
-            return null;
+            return points;
         }
 
         readonly double _firstWorkMark;
@@ -44,12 +50,13 @@ namespace SurfaceLeveling.Elementary
         double _distanceToSecondWorkMark;
 
         public double DistanceBeetwenVertices { get => _distanceBeetwPoints; }
-        public double SumWorkMarks { get => _sumOfWorkMarks; }
+        public double SumWorkMarks { get => _sumOfWorkMarks; }        
 
-        private PointOfZeroWork(WorkingMark firstVertex, WorkingMark secondVertex, double distanceBeetwPoints)
+        private PointOfZeroWork(SquareVertex firstVertex, SquareVertex secondVertex, double distanceBeetwPoints)
         {
-            _firstWorkMark = Math.Abs(firstVertex.WorkingHeight);
-            _secondWorkMark = Math.Abs(secondVertex.WorkingHeight);
+
+            _firstWorkMark = Math.Abs(firstVertex.WorkingMark);
+            _secondWorkMark = Math.Abs(secondVertex.WorkingMark);
             _distanceBeetwPoints = distanceBeetwPoints;
 
             SetSumWorkMarks(_firstWorkMark, _secondWorkMark);
@@ -66,5 +73,27 @@ namespace SurfaceLeveling.Elementary
         {
             distanceToWorkMark = (workMark * DistanceBeetwenVertices) / SumWorkMarks;
         }
+
+        public double CoordinateX
+        {
+            get
+            {
+
+
+                return 0;
+            }
+        }
+
+        public double CoordinateY
+        {
+            get
+            {
+
+
+                return 0;
+            }
+        }
+
+        bool IPositionable.IsNode => false;
     }
 }

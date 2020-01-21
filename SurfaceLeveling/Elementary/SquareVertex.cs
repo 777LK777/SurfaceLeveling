@@ -12,6 +12,7 @@ namespace SurfaceLeveling.Elementary
     {
         AbsoluteMark _absoluteMark;
         ProjectMark _projectMark;
+
         WorkingMark _workingMark;
         IVertex _vertex;
 
@@ -56,10 +57,9 @@ namespace SurfaceLeveling.Elementary
         /// <summary>
         /// Рабочая отметка вершины
         /// </summary>
-        public WorkingMark WorkingMark
+        public double WorkingMark
         {
-            get { return _workingMark; }
-            internal set { _workingMark = value; }
+            get { return _workingMark.WorkingHeight; }
         }
 
         /// <summary>
@@ -122,6 +122,13 @@ namespace SurfaceLeveling.Elementary
             CountCalls++;
             return this;
         }
+
+        //TODO: ПЕРЕДЕЛАТЬ это! У WorkingMark должен быть закрытый конструктор
+        internal void SetWorkingMark()
+        {
+            _workingMark = new WorkingMark(this);
+        }
+
 
         #region IEquatable
         public bool Equals(SquareVertex other)

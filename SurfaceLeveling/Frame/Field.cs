@@ -97,11 +97,20 @@ namespace SurfaceLeveling.Frame
 
             //TODO: ТЕХДОЛГ шаг должен быть равным во всех направлениях
             // Необходимо предотвратить возможность создания каркаса Frame с разным шагом узлов
-            _step = _yRows.
+
+            IEnumerable<double> steps = _yRows.
                 Select(r => r.Step).
                 Union(_xRows.
-                Select(r => r.Step)).
-                Single();
+                Select(r => r.Step));
+
+            if (steps.Count() == 1)
+            {
+                _step = steps.Single();
+            }
+            else
+                Console.WriteLine("Нарушен шаг сетки поля (неравный шаг, проверьте входные данные!)");
+
+
             #endregion
 
 
